@@ -8,7 +8,6 @@ pipeline {
             }
             post {
                 success {
-                    archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: false
                     echo 'JAR file created and archived!'
                 }
                 failure {
