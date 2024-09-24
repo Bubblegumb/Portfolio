@@ -7,7 +7,7 @@ pipeline {
         stage("Build") {
             steps {
                 echo "Test file generation."
-                bat  'mvn clean package'
+                bat  'mvn -v'
             }
             post {
                 success {
