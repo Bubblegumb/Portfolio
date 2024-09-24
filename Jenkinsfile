@@ -35,8 +35,8 @@ pipeline {
         stage("Sonarqube Analysis") {
             steps {
                 echo "Integrate a code analysis tool to analyze the code and ensure it meets industry standards."
-                withSonarQubeEnv('SonarQube') {
-                    bat 'mvn clean verify sonar:sonar'
+                withSonarQubeEnv(installationName: 'SonarQube') {
+                    bat 'mvn clean sonar:sonar'
                 }
             }
         }
