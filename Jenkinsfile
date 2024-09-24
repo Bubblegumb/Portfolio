@@ -20,7 +20,7 @@ pipeline {
         }
         stage("Test") {
             steps {
-                echo "Test file generation."
+                echo "Start testing"
                 bat  'mvn test'
             }
             post {
@@ -32,36 +32,20 @@ pipeline {
                 }
             }
         }
-        // stage("Code Analysis") {
-        //     steps {
-        //         echo "Integrate a code analysis tool to analyze the code and ensure it meets industry standards."
-        //         echo "SonarQube can be useful in this case for continuous inspection of code quality and security."
-        //     }
-        // }
+        stage("Sonarqube Analysis") {
+            steps {
+                echo "Integrate a code analysis tool to analyze the code and ensure it meets industry standards."
+                withSonarQubeEnv('SonarQube') {
+                    bat 'mvn clean verify sonar:sonar'
+                }
+            }
+        }
         // stage("Deploy") {
         //     steps {
         //         echo "Perform a security scan on the code using a tool to identify any vulnerabilities."
         //         echo "ZAP (Zed Attack Proxy) is a popular open-source web application security scanner."
         //     }
-        //     post {
-        //         success {
-        //             emailext(
-        //                 attachLog: true,
-        //                 to: "artmania260@gmail.com",
-        //                 subject: "Build Status Email",
-        //                 body: "The file is safe to use.",
-                        
-        //             )
-        //         }
-        //         failure {
-        //             emailext(
-        //                 attachLog: true,
-        //                 to: "artmania260@gmail.com",
-        //                 subject: "Build Status Email",
-        //                 body: "Security issues found in the files presented.",
-        //             )
-        //         }
-        //     }
+
         // }
         // stage("Release") {
         //     steps {
@@ -76,6 +60,25 @@ pipeline {
         //     }
         // }
         
+    }
+    post {
+        success {
+            emailext(
+                attachLog: true,
+                to: "artmania260@gmail.com",
+                subject: "Build Status Email",
+                body: "Pipeline deployed successfully.",
+                
+            )
+        }
+        failure {
+            emailext(
+                attachLog: true,
+                to: "artmania260@gmail.com",
+                subject: "Build Status Email",
+                body: "Failed to deploy pipeline.",
+            )
+        }
     }
 }
 
