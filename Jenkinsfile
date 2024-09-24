@@ -18,13 +18,20 @@ pipeline {
                 }
             }
         }
-        // stage("Test") {
-        //     steps {
-        //         echo "Run unit tests to ensure the code functions as expected and run integration tests to ensure the different components of the application work together as expected."
-        //         echo "JUnit is the popular Java framework used for unit testing and integration."
-        //         echo "If you are looking for something for web development, Selenium can be useful."
-        //     }
-        // }
+        stage("Test") {
+            steps {
+                echo "Test file generation."
+                bat  'mvn test'
+            }
+            post {
+                success {
+                    echo 'Test successful'
+                }
+                failure {
+                    echo 'Test failed!'
+                }
+            }
+        }
         // stage("Code Analysis") {
         //     steps {
         //         echo "Integrate a code analysis tool to analyze the code and ensure it meets industry standards."
