@@ -32,14 +32,14 @@ pipeline {
                 }
             }
         }
-        // stage("Sonarqube Analysis") {
-        //     steps {
-        //         echo "Integrate a code analysis tool to analyze the code and ensure it meets industry standards."
-        //         withSonarQubeEnv(installationName: 'SonarCube') {
-        //             bat 'mvn clean sonar:sonar'
-        //         }
-        //     }
-        // }
+        stage("Sonarqube Analysis") {
+            steps {
+                echo "Integrate a code analysis tool to analyze the code and ensure it meets industry standards."
+                withSonarQubeEnv(installationName: 'SonarCube') {
+                    bat 'mvn clean sonar:sonar'
+                }
+            }
+        }
         stage("Deploy") {
             steps {
                 echo "Deploy"
