@@ -32,33 +32,31 @@ pipeline {
                 }
             }
         }
-        // stage("Sonarqube Analysis") {
-        //     steps {
-        //         echo "Integrate a code analysis tool to analyze the code and ensure it meets industry standards."
-        //         withSonarQubeEnv(installationName: 'SonarCube') {
-        //             bat 'mvn clean sonar:sonar'
-        //         }
-        //     }
-        // }
+        stage("Sonarqube Analysis") {
+            steps {
+                echo "Integrate a code analysis tool to analyze the code and ensure it meets industry standards."
+                withSonarQubeEnv(installationName: 'SonarCube') {
+                    bat 'mvn clean sonar:sonar'
+                }
+            }
+        }
         stage("Deploy") {
             steps {
                 echo "Deploy"
             }
         }
 
-        // }
-        // stage("Release") {
-        //     steps {
-        //         echo "Deploy the application to a production server."
-        //         echo "Azure is also used in this stage. Aside from that, AWS and Ansible can also be used."
-        //     }
-        // }
-        // stage("Monitoring and Alerting") {
-        //     steps {
-        //         echo "Deploy the application to a production server."
-        //         echo "Azure is also used in this stage. Aside from that, AWS and Ansible can also be used."
-        //     }
-        // }
+        }
+        stage("Release") {
+            steps {
+                echo "Deploy the application to a production server."
+            }
+        }
+        stage("Monitoring and Alerting") {
+            steps {
+                echo "Monitor the application and send alert."
+            }
+        }
         
     }
     post {
