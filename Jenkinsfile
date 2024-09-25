@@ -45,8 +45,6 @@ pipeline {
                 echo "Deploy"
             }
         }
-
-        }
         stage("Release") {
             steps {
                 echo "Deploy the application to a production server."
@@ -57,7 +55,6 @@ pipeline {
                 echo "Monitor the application and send alert."
             }
         }
-        
     }
     post {
         success {
