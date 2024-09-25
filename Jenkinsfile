@@ -42,10 +42,7 @@ pipeline {
         // }
         stage("Deploy") {
             steps {
-                echo "Perform a security scan on the code using a tool to identify any vulnerabilities."
-                echo "ZAP (Zed Attack Proxy) is a popular open-source web application security scanner."
-                bat 'docker build -t myapp .'
-                bat 'docker run -d -p 8080:8080 myapp'
+                echo "Deploy"
             }
         }
 
