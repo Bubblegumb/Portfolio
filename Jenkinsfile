@@ -32,19 +32,21 @@ pipeline {
                 }
             }
         }
-        stage("Sonarqube Analysis") {
-            steps {
-                echo "Integrate a code analysis tool to analyze the code and ensure it meets industry standards."
-                withSonarQubeEnv(installationName: 'SonarCube') {
-                    bat 'mvn clean sonar:sonar'
-                }
-            }
-        }
-        // stage("Deploy") {
+        // stage("Sonarqube Analysis") {
         //     steps {
-        //         echo "Perform a security scan on the code using a tool to identify any vulnerabilities."
-        //         echo "ZAP (Zed Attack Proxy) is a popular open-source web application security scanner."
+        //         echo "Integrate a code analysis tool to analyze the code and ensure it meets industry standards."
+        //         withSonarQubeEnv(installationName: 'SonarCube') {
+        //             bat 'mvn clean sonar:sonar'
+        //         }
         //     }
+        // }
+        stage("Deploy") {
+            steps {
+                echo "Perform a security scan on the code using a tool to identify any vulnerabilities."
+                echo "ZAP (Zed Attack Proxy) is a popular open-source web application security scanner."
+                bat 'docker build -t myapp .'
+                bat 'docker run -d -p 8080:8080 myapp'
+            }
 
         // }
         // stage("Release") {
