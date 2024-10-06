@@ -12,6 +12,7 @@ pipeline {
             post {
                 success {
                     echo 'JAR file created and archived!'
+                    archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: false
                 }
                 failure {
                     echo 'Build failed!'
