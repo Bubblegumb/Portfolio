@@ -1,2 +1,2 @@
 # Portfolio
-Hello, this is just an attempt to make a personal portfolio using basic languages such as HTML and CSS. The other integrated will be jenkins for test purposes.
+Hello, this is just an attempt to setup CI/CD pipeline in jenkins for test purposes.
